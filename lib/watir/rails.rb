@@ -65,6 +65,14 @@ module Watir
         @middleware.error = value
       end
 
+      # Sets block to be used to run server.
+      #
+      # @param block
+      # @yield [app, port]
+      def server(&block)
+        @server = block
+      end
+
       # Check if Rails exceptions should be ignored. Defaults to false.
       #
       # @return [Boolean] true if exceptions should be ignored, false otherwise.
@@ -127,13 +135,17 @@ module Watir
       end
 
       def run_default_server(app, port)
-        begin
-          require 'rack/handler/thin'
-          Thin::Logging.silent = true
-          Rack::Handler::Thin.run(app, :Port => port)
-        rescue LoadError
-          require 'rack/handler/webrick'
-          Rack::Handler::WEBrick.run(app, :Port => port, :AccessLog => [], :Logger => WEBrick::Log::new(nil, 0))
+        if @server
+          @server.call(app, port)
+        else
+          begin
+            require 'rack/handler/thin'
+            Thin::Logging.silent = true
+            Rack::Handler::Thin.run(app, :Port => port)
+          rescue LoadError
+            require 'rack/handler/webrick'
+            Rack::Handler::WEBrick.run(app, :Port => port, :AccessLog => [], :Logger => WEBrick::Log::new(nil, 0))
+          end
         end
       end
 
