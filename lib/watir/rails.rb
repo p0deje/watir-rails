@@ -101,9 +101,7 @@ module Watir
 
         res = Net::HTTP.start(local_host, @port) { |http| http.get('/__identify__') }
 
-        if res.is_a?(Net::HTTPSuccess) or res.is_a?(Net::HTTPRedirection)
-          return res.body == @app.object_id.to_s
-        end
+        res.is_a?(Net::HTTPSuccess) || res.is_a?(Net::HTTPRedirection)
       rescue Errno::ECONNREFUSED, Errno::EBADF
         return false
       end
