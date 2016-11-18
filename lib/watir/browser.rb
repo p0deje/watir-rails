@@ -7,7 +7,7 @@ module Watir
     # Will start Rails instance for Watir automatically and then invoke the
     # original Watir::Browser#initialize method.
     def initialize(*args)
-      initialize_rails_with_watir *args
+      initialize_rails_with_watir(*args)
     end
 
     # Opens the url with the browser instance.
@@ -50,12 +50,12 @@ module Watir
 
     def initialize_rails_with_watir(*args)
       Rails.boot
-      override_and_preserve_original_methods(:goto) { original_initialize *args }
+      override_and_preserve_original_methods(:goto) { original_initialize(*args) }
       add_exception_checker unless Rails.ignore_exceptions?
     end
 
     def add_exception_checker
-      add_checker do
+      after_hooks.add do
         if error = Rails.error
           Rails.error = nil
           raise error

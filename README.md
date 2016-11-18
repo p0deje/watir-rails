@@ -1,7 +1,7 @@
 # Watir::Rails
-[![Gem Version](https://badge.fury.io/rb/watir-rails.png)](http://badge.fury.io/rb/watir-rails)
-[![Build Status](https://api.travis-ci.org/watir/watir-rails.png)](http://travis-ci.org/watir/watir-rails)
-[![Coverage](https://coveralls.io/repos/watir/watir-rails/badge.png?branch=master)](https://coveralls.io/r/watir/watir-rails)
+[![Gem Version](https://badge.fury.io/rb/watir-rails.svg)](http://badge.fury.io/rb/watir-rails)
+[![Build Status](https://api.travis-ci.org/watir/watir-rails.svg)](http://travis-ci.org/watir/watir-rails)
+[![Coverage](https://coveralls.io/repos/watir/watir-rails/badge.svg?branch=master)](https://coveralls.io/r/watir/watir-rails)
 
 This gem makes the [Watir](https://github.com/watir/watir) work with Rails.
 

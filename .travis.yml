@@ -1,15 +1,18 @@
+sudo: false
 rvm:
  - 2.2.1
  - 2.1.5
- - 2.0.0
  - ruby-head
 gemfile:
   - gemfiles/Gemfile.rails-2.x
   - gemfiles/Gemfile.rails-3.x
+  - gemfiles/Gemfile.rails-4.x
+  - gemfiles/Gemfile.rails-5.x
   - Gemfile
 notifications:
   recipients:
-    - jarmo.p@gmail.com
+    - p0deje@gmail.com
+    # - jarmo.p@gmail.com
 matrix:
   allow_failures:
     - rvm: ruby-head
